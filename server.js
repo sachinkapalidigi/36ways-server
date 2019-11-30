@@ -5,6 +5,7 @@ const passport = require("passport");
 const cors = require("cors");
 
 const users = require("./routes/api/users");
+const images = require("./routes/api/images");
 
 const app = express();
 app.use(cors());
@@ -26,6 +27,9 @@ mongoose
 app.use(passport.initialize()); // Passport config
 require("./config/passport")(passport); // Routes
 app.use("/api/users", users);
+app.use("/api", images);
+
+app.use("/uploads", express.static("uploads"));
 
 const port = process.env.PORT || 5001;
 // process.env.port is Heroku's port if you choose to deploy the app there.

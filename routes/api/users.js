@@ -95,4 +95,14 @@ router.post("/login", (req, res) => {
   });
 });
 
+router.post("/", (req, res) => {
+  console.log(req.body.id);
+  User.findOne({ _id: req.body.id })
+    .then(user => {
+      console.log(user);
+      res.json({ ...user._doc, password: "", date: "" });
+    })
+    .catch(err => console.log(error));
+});
+
 module.exports = router;
