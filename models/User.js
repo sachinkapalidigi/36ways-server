@@ -32,7 +32,7 @@ const UserSchema = new Schema({
   },
   image: {
     type: String,
-    default: "http://via.placeholder.com/150"
+    default: "default.svg"
   }
 });
 

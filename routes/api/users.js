@@ -102,7 +102,7 @@ router.post("/", (req, res) => {
       console.log(user);
       res.json({ ...user._doc, password: "", date: "" });
     })
-    .catch(err => console.log(error));
+    .catch(err => console.log(err));
 });
 
 module.exports = router;

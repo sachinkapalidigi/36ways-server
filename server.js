@@ -37,13 +37,15 @@ io.on("connection", socket => {
 
     socket.emit("mymessage", {
       user: "admin",
-      text: `Matching please wait`
+      text: `Matching please wait`,
+      type: "InActive"
     });
 
     // tell about match
     socket.broadcast.to(currentUser.roomId).emit("mymessage", {
       user: "admin",
-      text: `You have a match with ${currentUser.name}`
+      text: `You have a match with ${currentUser.name}`,
+      type: "Active"
     });
 
     socket.join(currentUser.roomId);
@@ -62,7 +64,12 @@ io.on("connection", socket => {
     console.log(user);
     // io.emit("mymessage", { user: user.name, text: message });
     // io.emit("mymessage", { a: "fasdfsa" });
-    io.to(user.roomId).emit("mymessage", { user: user.name, text: message });
+    io.to(user.roomId).emit("mymessage", {
+      user: user.name,
+      text: message,
+      type: "Active",
+      img: user.image
+    });
     callback();
   });
 
